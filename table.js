@@ -18,8 +18,11 @@ function makeTable(num) {
 		tbody.insertRow(i);
 
 		for (var j = 0; j < num; j++) {
-			tbody.rows[i].insertCell(0)
-
+			tbody.rows[i].insertCell(j);
+			tbody.rows[i].cells[j].id = i + " " + j;
+			tbody.rows[i].cells[j].onclick = function() {
+				console.log(this.id);
+			}
 		}
 	}
 
