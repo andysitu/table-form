@@ -1,23 +1,24 @@
 
 function init() {
-var num = prompt("What width do you want the square table to be?", "Give a number");
+	var cols = Math.floor((window.innerWidth / 7) * 0.80);
+	var rows = Math.floor(window.innerHeight / 7 - 4);
 
-makeTable(num);
+	makeTable(rows, cols);
 };
 
 window.onload = init;
 
-function makeTable(num) {
+function makeTable(rows, cols) {
 	var table = document.createElement("table");
 
 	var tbody = document.createElement("tbody");
 
 	table.appendChild(tbody);
 
-	for (var i = 0; i < num; i++) {
+	for (var i = 0; i <= rows; i++) {
 		tbody.insertRow(i);
 
-		for (var j = 0; j < num; j++) {
+		for (var j = 0; j <= cols; j++) {
 			tbody.rows[i].insertCell(j);
 			tbody.rows[i].cells[j].id = i + " " + j;
 			tbody.rows[i].cells[j].onclick = function() {
