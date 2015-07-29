@@ -21,7 +21,11 @@ function makeTable(num) {
 			tbody.rows[i].insertCell(j);
 			tbody.rows[i].cells[j].id = i + " " + j;
 			tbody.rows[i].cells[j].onclick = function() {
-				console.log(this.id);
+				var str = /(\d*) (\d*)/.exec(this.id);
+				var y = Number(str[1]); 
+				var x = Number(str[2]);
+
+				controller.clicked(y, x, this);
 			}
 		}
 	}
@@ -29,3 +33,8 @@ function makeTable(num) {
 	document.body.appendChild(table);
 }
 
+var controller = {
+	clicked(y, x, ele) {
+		ele.setAttribute("class", "red");
+	}
+};
