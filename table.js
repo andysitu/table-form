@@ -1,7 +1,10 @@
+var world = {
+	map: []
+};
 
 function init() {
 	var cols = Math.floor((window.innerWidth / 7) * 0.80);
-	var rows = Math.floor(window.innerHeight / 7 - 4);
+	var rows = Math.floor(window.innerHeight / 7 - 2);
 
 	makeTable(rows, cols);
 };
@@ -15,10 +18,13 @@ function makeTable(rows, cols) {
 
 	table.appendChild(tbody);
 
-	for (var i = 0; i <= rows; i++) {
+	for (var i = 0; i < rows; i++) {
 		tbody.insertRow(i);
+		world.map[i] = new Array();
 
-		for (var j = 0; j <= cols; j++) {
+		for (var j = 0; j <	 cols; j++) {
+			world.map[i][j] = "";
+
 			tbody.rows[i].insertCell(j);
 			tbody.rows[i].cells[j].id = i + " " + j;
 			tbody.rows[i].cells[j].onclick = function(e) {
