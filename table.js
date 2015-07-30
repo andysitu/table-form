@@ -21,12 +21,12 @@ function makeTable(rows, cols) {
 		for (var j = 0; j <= cols; j++) {
 			tbody.rows[i].insertCell(j);
 			tbody.rows[i].cells[j].id = i + " " + j;
-			tbody.rows[i].cells[j].onclick = function() {
+			tbody.rows[i].cells[j].onclick = function(e) {
 				var str = /(\d*) (\d*)/.exec(this.id);
 				var y = Number(str[1]); 
 				var x = Number(str[2]);
 
-				controller.clicked(y, x, this);
+				controller.clicked(y, x);
 			}
 		}
 	}
@@ -35,7 +35,16 @@ function makeTable(rows, cols) {
 }
 
 var controller = {
-	clicked(y, x, ele) {
-		ele.setAttribute("class", "red");
+	clicked(y, x) {
+		var ele = document.getElementById(y + " " + x);
+		ele.setAttribute("class", "green");
+		this.response(y, x);
+	},
+
+	response(y, x) {
+		var ele = document.getElementById(y - 1 + " " + x);
+		if (ele) {
+			ele.className = "red";
+		}
 	}
 };
