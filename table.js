@@ -1,5 +1,6 @@
 var world = {
 	map: [],
+	playerLoc: [0,0],
 
 	classTranslator(value) { // give it a letter (ex: "r") to get back the right color/ class ("red"). Also, can work in reverse
 		if (value.length <= 1) {
@@ -34,10 +35,11 @@ var world = {
 };
 
 function init() {
-	var cols = Math.floor((window.innerWidth / 7) * 0.80);
-	var rows = Math.floor(window.innerHeight / 7 - 2);
+	var cols = Math.floor((window.innerWidth / 8) * 0.80);
+	var rows = Math.floor(window.innerHeight / 8 - 2);
 
 	makeTable(rows, cols);
+
 };
 
 window.onload = init;
@@ -63,7 +65,7 @@ function makeTable(rows, cols) {
 				var y = Number(str[1]); 
 				var x = Number(str[2]);
 
-				controller.clicked(y, x);
+				controller.master("clicked", y, x);
 			}
 		}
 	}
@@ -72,10 +74,17 @@ function makeTable(rows, cols) {
 }
 
 var controller = {
+	master(status, y, x) {
+		if (status === "clicked") {
+			this.clicked(y,x);
+			this.response(y, x);
+		} 
+	},
+
 	clicked(y, x) {
 		var ele = document.getElementById(y + " " + x);
+
 		world.changeMap(y, x, "g")
-		this.response(y, x);
 	},
 
 	response(y, x) {
