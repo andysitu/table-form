@@ -19,10 +19,17 @@ var world = {
 		}
 	},
 	changeMap(y, x, colorValue) { // Changes the value in map array and appends the corresponding class in the table-cell
-		this.map[y][x] = colorValue;
+		if (this.map[y][x] === "") {
+			this.map[y][x] = colorValue;
 
-		var ele = document.getElementById(y + " " + x);
-		ele.className = this.classTranslator(colorValue);
+			var ele = document.getElementById(y + " " + x);
+			ele.className = this.classTranslator(colorValue);
+
+			return true;
+		} else {
+			return false;
+		}
+
 	}
 };
 
