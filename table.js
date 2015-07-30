@@ -1,5 +1,29 @@
 var world = {
-	map: []
+	map: [],
+
+	classTranslator(value) { // give it a letter (ex: "r") to get back the right color/ class ("red"). Also, can work in reverse
+		if (value.length <= 1) {
+			switch(value) {
+				case "r": return "red";
+				case "g": return "green";
+				default: console.log("classTranslator: " + value);
+						 throw("Unknown value given to classTranslator");
+			}
+		} else {
+			switch(value) {
+				case "red": return "r";
+				case "green": return "g";
+				default: console.log("classTranslator: " + value);
+						 throw("Unknown value given to classTranslator");
+			}
+		}
+	},
+	changeMap(y, x, colorValue) { // Changes the value in map array and appends the corresponding class in the table-cell
+		this.map[y][x] = colorValue;
+
+		var ele = document.getElementById(y + " " + x);
+		ele.className = this.classTranslator(colorValue);
+	}
 };
 
 function init() {
