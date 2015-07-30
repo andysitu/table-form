@@ -74,15 +74,27 @@ function makeTable(rows, cols) {
 var controller = {
 	clicked(y, x) {
 		var ele = document.getElementById(y + " " + x);
-		ele.setAttribute("class", "green");
+		world.changeMap(y, x, "g")
 		this.response(y, x);
 	},
 
 	response(y, x) {
-		var ele = document.getElementById(y - 1 + " " + x);
-		if (ele) {
-			ele.className = "red";
+		var dirCount = {0: 0, 1: 0, 2: 0, 3: 0}; 
+
+		while (dirCount[1] <= 0 || dirCount[2] <= 0 || dirCount[3] <= 0 || dirCount[4] <= 0) {
+			var dir = Math.floor( Math.random() * 4 );
+			dirCount[dir]++;
+
+			var coord = this.calculateFromI(y, x, dir);
+
+			var bool = world.changeMap(coord[0], coord[1], "r");
+
+			if ( bool ) {
+				return true;
+			}
 		}
+
+		return false;
 	},
 
 	calculateFromI(y, x, i) { // gives an array [y, x] of new coordinates based on direcion i and old coordinates y, x
