@@ -35,3 +35,30 @@ function coordValid(y, x) {
 		return false;
 	}
 }
+
+function getMapValue(y, x) {
+	if ( coordValid(y, x) ) {
+
+		var cell = document.getElementById(y + "_" + x);
+
+		return cell.innerHTML;
+
+	} else {
+		throw("Invalid coordinates for getMapValue: " + y + " " + x);
+	}
+}
+
+function setMapValue(y, x, value) {
+	if ( coordValid(y, x) ) {
+		var oldValue = getMapValue(y, x);
+
+		var cell = document.getElementById(y + "_" + x);
+
+		if (value !== oldValue) {
+			cell.innerHTML = value;
+		}
+
+	} else {
+		throw("Invalid coordinates for setMapValue: " + y + " " + x);
+	}
+}
