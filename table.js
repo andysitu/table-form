@@ -118,7 +118,8 @@ var controller = {
 			}
 		}
 
-		for ( ; ; ) {
+		var count = 0, max = world.map.length * world.map[0].length;
+		while ( count < max) {
 			y = Math.floor(Math.random() * world.map.length);
 			x = Math.floor(Math.random() * world.map[y].length);
 
