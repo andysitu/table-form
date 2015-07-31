@@ -35,14 +35,19 @@ var world = {
 
 	},
 
-	calculate(y, x) { // will calculate the points of that current position for either player or computer
+	calculate(y, x, color) { // will calculate the points of that current position
+							 // color is for theoretical calculation if something were placed there
 		var sum = 0;
 
 		funcCallFourDir(y, x, function(y1, x1) {
 			sum += world.valueTranslator(y1, x1);
 		})
 
-		sum += world.valueTranslator(y, x);
+		if (color === undefined) {
+			sum += world.valueTranslator(y, x);
+		} else if (color === 'r') {
+			sum -= 1;
+		}
 
 		return sum;
 	},
