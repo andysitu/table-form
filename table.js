@@ -61,8 +61,11 @@ var world = {
 
 var blocks = {
 	controller(y, x) { // handles what to do with destroying blocks, etc depending on their values.
+		
 		funcCallFourDir(y, x, function(y1, x1) {
-			console.log(world.calculate(y1, x1));
+			if (world.valueTranslator(y1, x1) >= 1) {
+				console.log(world.calculate(y1, x1));
+			}
 		} );
 	}
 }
