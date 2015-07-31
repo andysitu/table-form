@@ -87,12 +87,9 @@ var controller = {
 	master(status, y, x) {
 		if (status === "clicked") {
 			this.clicked(y,x);
-			window.setTimeout(timedOutResponse, 50, y, x);
+			controller.response(y, x);
+			blocks.controller(y,x);
 
-			function timedOutResponse(y, x) {
-				controller.response(y, x);
-				blocks.controller(y,x);
-			}
 		} else if (status === "player") {
 
 		}
