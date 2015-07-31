@@ -44,12 +44,12 @@ function funcCallFourDir(y, x, func, status) { // if sttus === true, then it'll 
 		coord = this.calculateFromI(y, x, i);
 
 		if ( coordValid(coord[0], coord[1]) ) {
-			func(coord[0], coord[1]);
+			func(coord[0], coord[1], i);
 		}
 	}
 
 	if (status === true) {
-		func(y, x);
+		func(y, x, i);
 	}
 }
 
