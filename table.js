@@ -69,12 +69,12 @@ function makeTable(rows, cols) {
 		world.map[i] = new Array();
 
 		for (var j = 0; j <	 cols; j++) {
-			world.map[i][j] = "";
+			world.map[i][j] = " ";
 
 			tbody.rows[i].insertCell(j);
-			tbody.rows[i].cells[j].id = i + " " + j;
+			tbody.rows[i].cells[j].id = i + "_" + j;
 			tbody.rows[i].cells[j].onclick = function(e) {
-				var str = /(\d*) (\d*)/.exec(this.id);
+				var str = /(\d*)_(\d*)/.exec(this.id);
 				var y = Number(str[1]); 
 				var x = Number(str[2]);
 
@@ -97,7 +97,7 @@ var controller = {
 	},
 
 	clicked(y, x) {
-		var ele = document.getElementById(y + " " + x);
+		var ele = document.getElementById(y + "_" + x);
 
 		world.changeMap(y, x, "g")
 	},
@@ -143,7 +143,7 @@ var controller = {
 	},
 
 	setColor(y, x, color) {
-		var ele = document.getElementById(y + " " + x);
+		var ele = document.getElementById(y + "_" + x);
 
 		if (ele) {
 
