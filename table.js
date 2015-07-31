@@ -118,6 +118,17 @@ var controller = {
 			}
 		}
 
+		for ( ; ; ) {
+			y = Math.floor(Math.random() * world.map.length);
+			x = Math.floor(Math.random() * world.map[y].length);
+
+			var bool = world.changeMap(y, x, "r");
+
+			if ( bool ) {
+				return true;
+			}
+		}
+
 		return false;
 	},
 
