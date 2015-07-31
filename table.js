@@ -59,6 +59,14 @@ var world = {
 
 };
 
+var blocks = {
+	controller(y, x) { // handles what to do with destroying blocks, etc depending on their values.
+		funcCallFourDir(y, x, function(y1, x1) {
+			console.log(world.calculate(y1, x1));
+		} );
+	}
+}
+
 function init() {
 	var cols = Math.floor((window.innerWidth / 8) * 0.80);
 	var rows = Math.floor(window.innerHeight / 8 - 2);
@@ -112,7 +120,9 @@ var controller = {
 	clicked(y, x) {
 		var ele = document.getElementById(y + "_" + x);
 
-		world.changeMap(y, x, "g")
+		world.changeMap(y, x, "g") // appends "g" onto the map where player clicked
+
+		blocks.controller(y, x);
 	},
 
 	response(y, x) {
