@@ -8,7 +8,7 @@ function calculateFromI(y, x, i) { // gives an array [y, x] of new coordinates b
 	}
 }
 
-function funcCallFourDir(y, x, func) {
+function funcCallFourDir(y, x, func, status) { // if sttus === true, then it'll also do function on y,x (original coordinate)
 	var coord = [0, 0];
 
 	for (var i = 0; i < 4; i++) {
@@ -19,6 +19,9 @@ function funcCallFourDir(y, x, func) {
 		}
 	}
 
+	if (status === true) {
+		func(y, x);
+	}
 }
 
 function coordValid(y, x) {

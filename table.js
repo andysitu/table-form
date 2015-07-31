@@ -64,9 +64,11 @@ var blocks = {
 		
 		funcCallFourDir(y, x, function(y1, x1) {
 			if (world.valueTranslator(y1, x1) >= 1) {
-				console.log(world.calculate(y1, x1));
+				var value = world.calculate(y1, x1);
+
+				console.log(value);
 			}
-		} );
+		}, true ); // true so that controller also acts on y, x
 	}
 }
 
@@ -115,6 +117,7 @@ var controller = {
 		if (status === "clicked") {
 			this.clicked(y,x);
 			this.response(y, x);
+			blocks.controller(y, x);
 		} else if (status === "player") {
 
 		}
@@ -125,7 +128,6 @@ var controller = {
 
 		world.changeMap(y, x, "g") // appends "g" onto the map where player clicked
 
-		blocks.controller(y, x);
 	},
 
 	response(y, x) {
