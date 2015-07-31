@@ -1,3 +1,32 @@
+function makeTable(rows, cols) {
+	var table = document.createElement("table");
+
+	var tbody = document.createElement("tbody");
+
+	table.appendChild(tbody);
+
+	for (var i = 0; i < rows; i++) {
+		tbody.insertRow(i);
+		world.map[i] = new Array();
+
+		for (var j = 0; j <	 cols; j++) {
+			world.map[i][j] = " ";
+
+			tbody.rows[i].insertCell(j);
+			tbody.rows[i].cells[j].id = i + "_" + j;
+			tbody.rows[i].cells[j].onclick = function(e) {
+				var str = /(\d*)_(\d*)/.exec(this.id);
+				var y = Number(str[1]); 
+				var x = Number(str[2]);
+
+				controller.master("clicked", y, x);
+			}
+		}
+	}
+
+	document.body.appendChild(table);
+}
+
 function calculateFromI(y, x, i) { // gives an array [y, x] of new coordinates based on direcion i and old coordinates y, x
 	switch(i) {
 		case 0: return [y, x - 1]; // left

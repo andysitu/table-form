@@ -73,8 +73,8 @@ var blocks = {
 }
 
 function init() {
-	var cols = Math.floor((window.innerWidth / 8) * 0.80);
-	var rows = Math.floor(window.innerHeight / 8 - 2);
+	var cols = Math.floor((window.innerWidth / 10) * 0.80);
+	var rows = Math.floor(window.innerHeight / 10 - 2);
 
 	makeTable(rows, cols);
 
@@ -82,35 +82,6 @@ function init() {
 };
 
 window.onload = init;
-
-function makeTable(rows, cols) {
-	var table = document.createElement("table");
-
-	var tbody = document.createElement("tbody");
-
-	table.appendChild(tbody);
-
-	for (var i = 0; i < rows; i++) {
-		tbody.insertRow(i);
-		world.map[i] = new Array();
-
-		for (var j = 0; j <	 cols; j++) {
-			world.map[i][j] = " ";
-
-			tbody.rows[i].insertCell(j);
-			tbody.rows[i].cells[j].id = i + "_" + j;
-			tbody.rows[i].cells[j].onclick = function(e) {
-				var str = /(\d*)_(\d*)/.exec(this.id);
-				var y = Number(str[1]); 
-				var x = Number(str[2]);
-
-				controller.master("clicked", y, x);
-			}
-		}
-	}
-
-	document.body.appendChild(table);
-}
 
 var controller = {
 	master(status, y, x) {
