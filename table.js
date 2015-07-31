@@ -92,6 +92,7 @@ var controller = {
 	master(status, y, x) {
 		if (status === "clicked") {
 			this.clicked(y,x);
+			this.bestResponse(y, x);
 			controller.response(y, x);
 			blocks.controller(y,x);
 
@@ -105,6 +106,18 @@ var controller = {
 
 		world.changeMap(y, x, "g") // appends "g" onto the map where player clicked
 
+	},
+
+	bestResponse(y, x) {
+		var sums = {};
+
+		funcCallFourDir(y, x, function(y1, x1, i) {
+
+			sums[i] = world.calculate(y, x, 'r');
+
+		}, false);
+
+		console.log(sums);
 	},
 
 	response(y, x) {
@@ -134,7 +147,6 @@ var controller = {
 				return true;
 			}
 		}
-
 
 		return false;
 	},
