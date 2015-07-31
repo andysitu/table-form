@@ -31,6 +31,16 @@ var world = {
 			return false;
 		}
 
+	},
+
+	coordValid(y, x) {
+		if (y >= 0 && y < world.map.length) {
+			if (x >= 0 && x < world.map[y].length) {
+				return true;
+			}
+		} else {
+			return false;
+		}
 	}
 };
 
