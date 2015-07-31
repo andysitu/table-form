@@ -106,18 +106,34 @@ var controller = {
 
 	bestResponse(y, x) {
 		var sums = {};
+		var max = -100;
 
 		funcCallFourDir(y, x, function(y1, x1, i) {
 
-			if (world.map[y1][x1]) {
+			if (world.map[y1][x1] === ' ') {
 
 				sums[i] = world.calculate(y1, x1);
+
+				max = Math.max(max, sums[i]);
 
 			}
 
 		}, false);
 
-		console.log(sums);
+		var maxI = [];
+
+		for (var key in sums) {
+			if (sums[key] === max) {
+				maxI.push(key);
+			}
+		}
+
+		if (maxI.length >= 1) {
+			var randomIndex = Math.floor(maxI.length * Math.random());
+			return maxI[randomIndex];
+		} else {
+			return false;
+		}
 	},
 
 	response(y, x) {
