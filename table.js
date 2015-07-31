@@ -4,7 +4,7 @@ var world = {
 
 	classTranslator(value) { // give it a letter (ex: "r") to get back the right color/ class ("red"). Also, can work in reverse
 		if (value.length <= 1) {
-			switch(value) {
+			switch(value) { // NOTE: ALSO UPDATE ELSE CASE AND VALUETRANSLATOR
 				case "r": return "red";
 				case "g": return "green";
 				default: console.log("classTranslator: " + value);
@@ -20,7 +20,7 @@ var world = {
 		}
 	},
 	changeMap(y, x, colorValue) { // Changes the value in map array and appends the corresponding class in the table-cell
-		if ( this.coordValid(y, x) ) {
+		if ( coordValid(y, x) ) {
 			if (this.map[y][x] === " ") {
 				this.map[y][x] = colorValue;
 
@@ -35,15 +35,26 @@ var world = {
 
 	},
 
-	coordValid(y, x) {
-		if (y >= 0 && y < world.map.length) {
-			if (x >= 0 && x < world.map[y].length) {
-				return true;
-			}
-		} else {
-			return false;
-		}
+	calculate(y, x, color) { // will calculate the points of that current position for either player or computer
+		var sum = 0;
+
+		funcCallFourDir(y, x, function(y1, x1) {
+			sum += world.valueTranslator(y1, x1);
+		})
+
+		return sum;
+	},
+
+	valueTranslator(y, x) {
+		switch(world.map[y][x]) {
+			case "r": return -1;
+			case "g": return 1;
+			case " ": return 0;
+			default: throw("Error in valueTranslator " + map[y][x]);
+		}	
 	}
+
+
 };
 
 function init() {
@@ -109,7 +120,7 @@ var controller = {
 			var dir = Math.floor( Math.random() * 4 );
 			dirCount[dir]++;
 
-			var coord = this.calculateFromI(y, x, dir);
+			var coord = calculateFromI(y, x, dir);
 
 			var bool = world.changeMap(coord[0], coord[1], "r");
 
@@ -131,16 +142,6 @@ var controller = {
 		}
 
 		return false;
-	},
-
-	calculateFromI(y, x, i) { // gives an array [y, x] of new coordinates based on direcion i and old coordinates y, x
-		switch(i) {
-			case 0: return [y, x - 1]; // left
-			case 1: return [y - 1, x]; // up
-			case 2: return [y, x + 1]; // right
-			case 3: return [y + 1, x]; // down
-			default: throw "calculateFromI only takes i from 0-3";
-		}
 	},
 
 	setColor(y, x, color) {
