@@ -66,7 +66,7 @@ var blocks = {
 			if (world.valueTranslator(y1, x1) >= 1) {
 				var value = world.calculate(y1, x1);
 
-				console.log(value);
+				setMapValue(y1, x1, value);
 			}
 		}, true ); // true so that controller also acts on y, x
 	}
@@ -116,8 +116,12 @@ var controller = {
 	master(status, y, x) {
 		if (status === "clicked") {
 			this.clicked(y,x);
-			this.response(y, x);
-			blocks.controller(y, x);
+			window.setTimeout(timedOutResponse, 50, y, x);
+
+			function timedOutResponse(y, x) {
+				controller.response(y, x);
+				blocks.controller(y,x);
+			}
 		} else if (status === "player") {
 
 		}
@@ -157,6 +161,7 @@ var controller = {
 				return true;
 			}
 		}
+
 
 		return false;
 	},
