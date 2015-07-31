@@ -14,7 +14,21 @@ function funcCallFourDir(y, x, func) {
 	for (var i = 0; i < 4; i++) {
 		coord = this.calculateFromI(y, x, i);
 
-		func(coord[0], coord[1]);
+		if ( coordValid(coord[0], coord[1]) ) {
+			func(coord[0], coord[1]);
+		}
 	}
 
+}
+
+function coordValid(y, x) {
+	if (y >= 0 && y < world.map.length) {
+		
+		if (x >= 0 && x < world.map[y].length) {
+			return true;
+		}
+
+	} else {
+		return false;
+	}
 }
