@@ -33,7 +33,7 @@ function calculateFromI(y, x, i) { // gives an array [y, x] of new coordinates b
 		case 1: return [y - 1, x]; // up
 		case 2: return [y, x + 1]; // right
 		case 3: return [y + 1, x]; // down
-		default: throw "calculateFromI only takes i from 0-3";
+		default: throw "calculateFromI only takes i from 0-3, not " + i;
 	}
 }
 

@@ -130,7 +130,7 @@ var controller = {
 
 		if (maxI.length >= 1) {
 			var randomIndex = Math.floor(maxI.length * Math.random());
-			return maxI[randomIndex];
+			return Number(maxI[randomIndex]);
 		} else {
 			return false;
 		}
