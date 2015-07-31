@@ -35,12 +35,14 @@ var world = {
 
 	},
 
-	calculate(y, x, color) { // will calculate the points of that current position for either player or computer
+	calculate(y, x) { // will calculate the points of that current position for either player or computer
 		var sum = 0;
 
 		funcCallFourDir(y, x, function(y1, x1) {
 			sum += world.valueTranslator(y1, x1);
 		})
+
+		sum += world.valueTranslator(y, x);
 
 		return sum;
 	},
