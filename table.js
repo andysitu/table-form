@@ -137,30 +137,29 @@ var controller = {
 	},
 
 	response(y, x) {
-		var dirCount = {0: 0, 1: 0, 2: 0, 3: 0}; 
+		var dir = this.bestResponse(y, x);
 
-		while (dirCount[1] <= 0 || dirCount[2] <= 0 || dirCount[3] <= 0 || dirCount[4] <= 0) {
-			var dir = Math.floor( Math.random() * 4 );
-			dirCount[dir]++;
+		if (dir !== false) {
 
+			console.log(dir);
 			var coord = calculateFromI(y, x, dir);
 
-			var bool = world.changeMap(coord[0], coord[1], "r");
+			world.changeMap(coord[0], coord[1], "r");
 
-			if ( bool ) {
-				return true;
-			}
-		}
+			return true;
 
-		var count = 0, max = world.map.length * world.map[0].length;
-		while ( count < max) {
-			y = Math.floor(Math.random() * world.map.length);
-			x = Math.floor(Math.random() * world.map[y].length);
+		} else {
 
-			var bool = world.changeMap(y, x, "r");
+			var count = 0, max = world.map.length * world.map[0].length;
+			while ( count < max) {
+				y = Math.floor(Math.random() * world.map.length);
+				x = Math.floor(Math.random() * world.map[y].length);
 
-			if ( bool ) {
-				return true;
+				var bool = world.changeMap(y, x, "r");
+
+				if ( bool ) {
+					return true;
+				}
 			}
 		}
 
