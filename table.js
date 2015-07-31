@@ -35,7 +35,7 @@ var world = {
 
 	},
 
-	calculate(y, x, color) { // will calculate the points of that current position
+	calculate(y, x) { // will calculate the points of that current position
 							 // color is for theoretical calculation if something were placed there
 		var sum = 0;
 
@@ -43,11 +43,7 @@ var world = {
 			sum += world.valueTranslator(y1, x1);
 		})
 
-		if (color === undefined) {
-			sum += world.valueTranslator(y, x);
-		} else if (color === 'r') {
-			sum -= 1;
-		}
+		sum += world.valueTranslator(y, x);
 
 		return sum;
 	},
@@ -113,7 +109,11 @@ var controller = {
 
 		funcCallFourDir(y, x, function(y1, x1, i) {
 
-			sums[i] = world.calculate(y, x, 'r');
+			if (world.map[y1][x1]) {
+
+				sums[i] = world.calculate(y1, x1);
+
+			}
 
 		}, false);
 
