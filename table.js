@@ -53,7 +53,7 @@ var world = {
 			case "r": return -1;
 			case "g": return 1;
 			case " ": return 0;
-			default: throw("Error in valueTranslator " + map[y][x]);
+			default: throw("Error in valueTranslator " + this.map[y][x]);
 		}	
 	}
 
@@ -90,6 +90,7 @@ var controller = {
 			this.clicked(y,x);
 			controller.response(y, x);
 			blocks.controller(y,x);
+			test.tester(y, x);
 
 		} else if (status === "player") {
 
@@ -172,12 +173,33 @@ var test = {
 		var status = false;
 
 		funcCallFourDir(y, x, function(y1, x1) {
-			if (map[y1][x1] === " ") {
+			if (world.map[y1][x1] === " ") {
 				status = true;
 			}
 		})
 
 		return status;
 
+	},
+
+	tester(y, x) {
+		funcCallFourDir(y, x, function(y1, x1) {
+			if (world.valueTranslator(y1, x1) >= 1) {
+				var index = test.greenList.indexOf(y1 + "_" +x1);
+
+				if ( index === -1 ) {
+					if ( test.notSurrounded(y1, x1) ) {
+						test.greenList.push(y1 + "_" +x1);
+					}
+				} else {
+					if ( !test.notSurrounded(y1, x1) ) {
+						test.greenList.splice(index, 1);
+					}
+				}
+			}
+
+		}, true)
+
+		console.log(this.greenList);
 	}
 }
