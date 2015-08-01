@@ -88,7 +88,7 @@ var controller = {
 	master(status, y, x) {
 		if (status === "clicked") {
 			this.clicked(y,x);
-			controller.response(y, x);
+			red.response(y, x);
 			blocks.controller(y,x);
 			red.testIfSurrounded(y, x);
 
@@ -102,7 +102,11 @@ var controller = {
 
 		world.changeMap(y, x, "g") // appends "g" onto the map where player clicked
 
-	},
+	}
+	
+};
+
+var red = {
 
 	bestResponse(y, x) { // checks for where block to place to be next to greatest value of green blocks
 		var sums = {};
@@ -163,10 +167,9 @@ var controller = {
 		}
 
 		return false;
-	}
-};
+	},
 
-var red = {
+
 	greenList: [],
 
 	notSurrounded(y, x) { // returns true if block in y,x has an empty block surrounding it
