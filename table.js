@@ -90,7 +90,7 @@ var controller = {
 			this.clicked(y,x);
 			controller.response(y, x);
 			blocks.controller(y,x);
-			test.tester(y, x);
+			red.testIfSurrounded(y, x);
 
 		} else if (status === "player") {
 
@@ -163,13 +163,13 @@ var controller = {
 		}
 
 		return false;
-	},
+	}
 };
 
-var test = {
+var red = {
 	greenList: [],
 
-	notSurrounded(y, x) {
+	notSurrounded(y, x) { // returns true if block in y,x has an empty block surrounding it
 		var status = false;
 
 		funcCallFourDir(y, x, function(y1, x1) {
@@ -182,24 +182,22 @@ var test = {
 
 	},
 
-	tester(y, x) {
+	testIfSurrounded(y, x) { // runs notSurrounded in the 4 spaces surrounded y,x and adds to list if true, but also removes it from list if it becomes notSurrounded
 		funcCallFourDir(y, x, function(y1, x1) {
 			if (world.valueTranslator(y1, x1) >= 1) {
-				var index = test.greenList.indexOf(y1 + "_" +x1);
+				var index = red.greenList.indexOf(y1 + "_" +x1);
 
 				if ( index === -1 ) {
-					if ( test.notSurrounded(y1, x1) ) {
-						test.greenList.push(y1 + "_" +x1);
+					if ( red.notSurrounded(y1, x1) ) {
+						red.greenList.push(y1 + "_" +x1);
 					}
 				} else {
-					if ( !test.notSurrounded(y1, x1) ) {
-						test.greenList.splice(index, 1);
+					if ( !red.notSurrounded(y1, x1) ) {
+						red.greenList.splice(index, 1);
 					}
 				}
 			}
 
 		}, true)
-
-		console.log(this.greenList);
 	}
 }
