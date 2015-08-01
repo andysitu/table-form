@@ -49,7 +49,7 @@ function funcCallFourDir(y, x, func, status) { // if sttus === true, then it'll 
 	}
 
 	if (status === true) {
-		func(y, x, i);
+		func(y, x);
 	}
 }
 

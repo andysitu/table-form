@@ -88,7 +88,6 @@ var controller = {
 	master(status, y, x) {
 		if (status === "clicked") {
 			this.clicked(y,x);
-			this.bestResponse(y, x);
 			controller.response(y, x);
 			blocks.controller(y,x);
 
@@ -104,7 +103,7 @@ var controller = {
 
 	},
 
-	bestResponse(y, x) {
+	bestResponse(y, x) { // checks for where block to place to be next to greatest value of green blocks
 		var sums = {};
 		var max = -100;
 
@@ -131,17 +130,16 @@ var controller = {
 		if (maxI.length >= 1) {
 			var randomIndex = Math.floor(maxI.length * Math.random());
 			return Number(maxI[randomIndex]);
-		} else {
+		} else { // returns false if none of 4 directions have an empty space
 			return false;
 		}
 	},
 
-	response(y, x) {
+	response(y, x) { // uses bestResponse to check for block placement. if it returns false, then place random block on map
 		var dir = this.bestResponse(y, x);
 
 		if (dir !== false) {
 
-			console.log(dir);
 			var coord = calculateFromI(y, x, dir);
 
 			world.changeMap(coord[0], coord[1], "r");
@@ -174,3 +172,20 @@ var controller = {
 		}
 	}
 };
+
+var test = {
+	greenList: [],
+
+	notSurrounded(y, x) {
+		var status = false;
+
+		funcCallFourDir(y, x, function(y1, x1) {
+			if (map[y1][x1] === " ") {
+				status = true;
+			}
+		})
+
+		return status;
+
+	}
+}
