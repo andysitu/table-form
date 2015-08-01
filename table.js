@@ -163,14 +163,6 @@ var controller = {
 
 		return false;
 	},
-
-	setColor(y, x, color) {
-		var ele = document.getElementById(y + "_" + x);
-
-		if (ele) {
-
-		}
-	}
 };
 
 var test = {

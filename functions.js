@@ -25,6 +25,8 @@ function makeTable(rows, cols) {
 	}
 
 	document.body.appendChild(table);
+	table = null;
+	tbody = null;
 }
 
 function calculateFromI(y, x, i) { // gives an array [y, x] of new coordinates based on direcion i and old coordinates y, x
@@ -86,6 +88,7 @@ function setMapValue(y, x, value) {
 		if (value !== oldValue) {
 			cell.innerHTML = value;
 		}
+
 
 	} else {
 		throw("Invalid coordinates for setMapValue: " + y + " " + x);
