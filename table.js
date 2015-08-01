@@ -107,6 +107,19 @@ var controller = {
 };
 
 var red = {
+	greenBlocks(y, x) {
+		var sum = 0;
+
+		funcCallFourDir(y, x, function(y1, x1) {
+			if (world.valueTranslator(y1, x1) > 0) {
+				sum += world.valueTranslator(y1, x1);
+			}
+		})
+
+		sum += world.valueTranslator(y, x);
+
+		return sum;
+	},
 
 	bestResponse(y, x) { // checks for where block to place to be next to greatest value of green blocks
 		var sums = {};
@@ -116,7 +129,7 @@ var red = {
 
 			if (world.map[y1][x1] === ' ') {
 
-				sums[i] = world.calculate(y1, x1);
+				sums[i] = red.greenBlocks(y1, x1);
 
 				max = Math.max(max, sums[i]);
 
