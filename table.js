@@ -70,6 +70,19 @@ var blocks = {
 				setMapValue(y1, x1, value);
 			}
 		}, true ); // true so that controller also acts on y, x
+	},
+
+	destroy(y, x) {
+		if ( coordValid(y, x) ) {
+			world.map[y][x] = " ";
+
+			var ele = document.getElementById(y + "_" + x);
+			ele.className = "";	
+			ele.innerHTML = "";
+			ele = null;
+
+			return true;
+		}
 	}
 }
 
