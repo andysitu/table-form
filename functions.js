@@ -43,10 +43,11 @@ function makeDisplay() {
 	var height = table.getBoundingClientRect().bottom - table.getBoundingClientRect().top - 10;
 
 	var disp = document.createElement("textarea");
-	
-	document.body.appendChild(disp);
 
 	disp.id = "msg";
+	disp.wrap = "hard"
+	
+	document.body.appendChild(disp);
 
 	var sheet = document.styleSheets[0];
 
@@ -59,6 +60,12 @@ function makeDisplay() {
 	disp = null;
 	
 	}
+
+function display(msg) {
+	var disp = document.getElementById("msg");
+
+	disp.value = msg;
+}
 
 function calculateFromI(y, x, i) { // gives an array [y, x] of new coordinates based on direcion i and old coordinates y, x
 	switch(i) {
