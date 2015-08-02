@@ -162,6 +162,8 @@ var red = {
 
 			world.changeMap(coord[0], coord[1], "r");
 
+			blocks.controller(coord[0], coord[1])
+
 			return true;
 
 		} else {
@@ -174,6 +176,7 @@ var red = {
 				var bool = world.changeMap(y, x, "r");
 
 				if ( bool ) {
+					blocks.controller(y, x);
 					return true;
 				}
 			}
