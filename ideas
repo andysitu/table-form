@@ -1,0 +1,7 @@
+Set playerlocation so that keyboard can also be used (much easier than clicking)
+
+value of each cell increase currency system
+
+other structures that can be used, but this would have the be purchased. This should also have life.
+
+if value of cell goes below 0, then it'll be deleted
