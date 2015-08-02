@@ -35,6 +35,7 @@ function makeDisplay() {
 	var table = document.getElementById("table");
 
 	var rightValue = table.getBoundingClientRect().right;
+	rightValue += 10;
 
 	var disp = document.createElement("div");
 	
@@ -43,6 +44,15 @@ function makeDisplay() {
 	disp.id = "msg";
 
 	var sheet = document.styleSheets[0];
+
+	var string = "#msg {position: absolute;top: 10px; left: " + rightValue +"px; background-color: red }"
+
+	sheet.insertRule(string, 0);
+
+
+	table = null;
+	right = null;
+	disp = null;
 }
 
 function calculateFromI(y, x, i) { // gives an array [y, x] of new coordinates based on direcion i and old coordinates y, x
