@@ -1,6 +1,8 @@
 function makeTable(rows, cols) {
 	var table = document.createElement("table");
 
+	table.id = "table";
+
 	var tbody = document.createElement("tbody");
 
 	table.appendChild(tbody);
@@ -27,6 +29,20 @@ function makeTable(rows, cols) {
 	document.body.appendChild(table);
 	table = null;
 	tbody = null;
+}
+
+function makeDisplay() {
+	var table = document.getElementById("table");
+
+	var rightValue = table.getBoundingClientRect().right;
+
+	var disp = document.createElement("div");
+	
+	document.body.appendChild(disp);
+
+	disp.id = "msg";
+
+	var sheet = document.styleSheets[0];
 }
 
 function calculateFromI(y, x, i) { // gives an array [y, x] of new coordinates based on direcion i and old coordinates y, x
