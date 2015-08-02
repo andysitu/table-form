@@ -34,10 +34,17 @@ function makeTable(rows, cols) {
 function makeDisplay() {
 	var table = document.getElementById("table");
 
-	var rightValue = table.getBoundingClientRect().right;
-	rightValue += 10;
+	var leftValue = table.getBoundingClientRect().right;
+	leftValue += 10;
 
-	var disp = document.createElement("div");
+	var width = document.body.scrollWidth;
+	width -= (leftValue + 5);
+
+	var height = table.getBoundingClientRect().bottom - table.getBoundingClientRect().top - 10;
+
+	console.log(height);
+
+	var disp = document.createElement("textarea");
 	
 	document.body.appendChild(disp);
 
@@ -45,15 +52,17 @@ function makeDisplay() {
 
 	var sheet = document.styleSheets[0];
 
-	var string = "#msg {position: absolute;top: 10px; left: " + rightValue +"px; background-color: red }"
+	var string = "#msg {position: absolute;top: 10px; left: " + leftValue +"px; width: " + width + "px; height: " + height + "px; background-color: red }"
 
 	sheet.insertRule(string, 0);
 
+	disp.innerHTML = "JFLKDJFLKDJSLJFLKDSJFLDSJLFKJDSLKFJLKDSLFKJLKEJRLKJWELKRJ"
 
 	table = null;
 	right = null;
 	disp = null;
-}
+	
+	}
 
 function calculateFromI(y, x, i) { // gives an array [y, x] of new coordinates based on direcion i and old coordinates y, x
 	switch(i) {
