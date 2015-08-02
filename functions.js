@@ -1,11 +1,8 @@
 function makeTable(rows, cols) {
 	var table = document.createElement("table");
 
-<<<<<<< HEAD
-=======
 	table.id = "table";
 
->>>>>>> gh-pages
 	var tbody = document.createElement("tbody");
 
 	table.appendChild(tbody);
@@ -34,8 +31,6 @@ function makeTable(rows, cols) {
 	tbody = null;
 }
 
-<<<<<<< HEAD
-=======
 function makeDisplay() {
 	var table = document.getElementById("table");
 
@@ -72,7 +67,6 @@ function display(msg) {
 	disp.value = msg;
 }
 
->>>>>>> gh-pages
 function calculateFromI(y, x, i) { // gives an array [y, x] of new coordinates based on direcion i and old coordinates y, x
 	switch(i) {
 		case 0: return [y, x - 1]; // left

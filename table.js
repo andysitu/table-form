@@ -67,11 +67,6 @@ var blocks = {
 			if (world.valueTranslator(y1, x1) >= 1) {
 				var value = world.calculate(y1, x1);
 
-<<<<<<< HEAD
-				setMapValue(y1, x1, value);
-			}
-		}, true ); // true so that controller also acts on y, x
-=======
 				if (value < 0) {
 					blocks.destroy(y1, x1);
 				} else {
@@ -93,7 +88,6 @@ var blocks = {
 
 			return true;
 		}
->>>>>>> gh-pages
 	}
 }
 
@@ -102,10 +96,7 @@ function init() {
 	var rows = Math.floor(window.innerHeight / 10 - 2);
 
 	makeTable(rows, cols);
-<<<<<<< HEAD
-=======
 	makeDisplay();
->>>>>>> gh-pages
 
 	controller.master("player")
 };
@@ -190,11 +181,8 @@ var red = {
 
 			world.changeMap(coord[0], coord[1], "r");
 
-<<<<<<< HEAD
-=======
 			blocks.controller(coord[0], coord[1])
 
->>>>>>> gh-pages
 			return true;
 
 		} else {
@@ -207,10 +195,7 @@ var red = {
 				var bool = world.changeMap(y, x, "r");
 
 				if ( bool ) {
-<<<<<<< HEAD
-=======
 					blocks.controller(y, x);
->>>>>>> gh-pages
 					return true;
 				}
 			}
