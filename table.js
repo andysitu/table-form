@@ -96,6 +96,7 @@ function init() {
 	var rows = Math.floor(window.innerHeight / 10 - 2);
 
 	makeTable(rows, cols);
+	makeDisplay();
 
 	controller.master("player")
 };

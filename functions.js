@@ -38,11 +38,9 @@ function makeDisplay() {
 	leftValue += 10;
 
 	var width = document.body.scrollWidth;
-	width -= (leftValue + 5);
+	width -= (leftValue + 15);
 
 	var height = table.getBoundingClientRect().bottom - table.getBoundingClientRect().top - 10;
-
-	console.log(height);
 
 	var disp = document.createElement("textarea");
 	
@@ -52,11 +50,9 @@ function makeDisplay() {
 
 	var sheet = document.styleSheets[0];
 
-	var string = "#msg {position: absolute;top: 10px; left: " + leftValue +"px; width: " + width + "px; height: " + height + "px; background-color: red }"
+	var string = "#msg {position: absolute;top: 10px; left: " + leftValue +"px; width: " + width + "px; height: " + height + "px; }"
 
 	sheet.insertRule(string, 0);
-
-	disp.innerHTML = "JFLKDJFLKDJSLJFLKDSJFLDSJLFKJDSLKFJLKDSLFKJLKEJRLKJWELKRJ"
 
 	table = null;
 	right = null;
