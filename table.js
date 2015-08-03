@@ -67,27 +67,10 @@ var blocks = {
 			if (world.valueTranslator(y1, x1) >= 1) {
 				var value = world.calculate(y1, x1);
 
-				if (value < 0) {
-					blocks.destroy(y1, x1);
-				} else {
-					setMapValue(y1, x1, value);
-				}
+				setMapValue(y1, x1, value);
 				
 			}
 		}, true ); // true so that controller also acts on y, x
-	},
-
-	destroy(y, x) { // removes class from element, sets its map value backto to ' ', sets innerHTML to ""
-		if ( coordValid(y, x) ) {
-			world.map[y][x] = " ";
-
-			var ele = document.getElementById(y + "_" + x);
-			ele.className = "";	
-			ele.innerHTML = "";
-			ele = null;
-
-			return true;
-		}
 	}
 };
 

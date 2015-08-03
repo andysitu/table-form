@@ -123,7 +123,14 @@ function setMapValue(y, x, value) {
 
 		var cell = document.getElementById(y + "_" + x);
 
-		if (value !== oldValue) {
+		if (value < 0) {
+			world.map[y][x] = " ";
+
+			var ele = document.getElementById(y + "_" + x);
+			ele.className = "";	
+			ele.innerHTML = "";
+			ele = null;
+		} else if (value !== oldValue) {
 			cell.innerHTML = value;
 		}
 
