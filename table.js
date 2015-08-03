@@ -89,6 +89,7 @@ window.onload = init;
 var controller = {
 	master(status, y, x) {
 		if (status === "clicked") {
+			green.calculateBlocks();
 			this.clicked(y,x);
 			red.response(y, x);
 			blocks.controller(y,x);
@@ -233,6 +234,12 @@ var green = {
 	set blocks(value) {
 		this._blocks = value;
 		return this._blocks;
+	},
+
+	calculateBlocks() {
+		this.blocks += this.profit;
+
+		display("You made a profit of " + this.profit + " and now have " + this.blocks + " blocks.");
 	},
 
 	_profit: 0,
