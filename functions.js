@@ -123,6 +123,8 @@ function setMapValue(y, x, value) {
 
 		var cell = document.getElementById(y + "_" + x);
 
+		var difference = value - oldValue;
+
 		if (value < 0) {
 			world.map[y][x] = " ";
 
@@ -130,10 +132,13 @@ function setMapValue(y, x, value) {
 			ele.className = "";	
 			ele.innerHTML = "";
 			ele = null;
+
+			green.profit -= oldValue;	
+
 		} else if (value !== oldValue) {
 			cell.innerHTML = value;
+			green.profit += difference;	
 		}
-
 
 	} else {
 		throw("Invalid coordinates for setMapValue: " + y + " " + x);
