@@ -249,5 +249,17 @@ var green = {
 
 	set blocks(value) {
 		this._blocks = value;
+		return this._blocks;
+	},
+
+	_profit: 0,
+
+	get profit() {
+		return this._profit;
+	},
+
+	set profit(value) {
+		this._profit = value;
+		return this._profit;
 	}
 };
