@@ -84,8 +84,6 @@ function init() {
 
 	makeTable(rows, cols);
 	makeDisplay();
-
-	controller.master("player")
 };
 
 window.onload = init;
@@ -99,8 +97,6 @@ var controller = {
 			blocks.controller(y,x);
 			red.testIfSurrounded(y, x);
 
-		} else if (status === "player") {
-
 		}
 	},
 
@@ -108,6 +104,7 @@ var controller = {
 		var ele = document.getElementById(y + "_" + x);
 
 		world.changeMap(y, x, "g") // appends "g" onto the map where player clicked
+		world.playerLoc = [y, x];
 
 	}
 	
