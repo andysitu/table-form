@@ -110,7 +110,7 @@ function getMapValue(y, x) {
 
 		var cell = document.getElementById(y + "_" + x);
 
-		return cell.innerHTML;
+		return (cell.innerHTML || 0);
 
 	} else {
 		throw("Invalid coordinates for getMapValue: " + y + " " + x);
