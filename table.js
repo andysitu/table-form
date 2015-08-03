@@ -64,11 +64,15 @@ var blocks = {
 	controller(y, x) { // handles what to do with destroying blocks, etc depending on their values.
 		
 		funcCallFourDir(y, x, function(y1, x1) {
-			if (world.valueTranslator(y1, x1) >= 1) {
+			if (world.valueTranslator(y1, x1) > 0) {
 				var value = world.calculate(y1, x1);
 
 				setMapValue(y1, x1, value);
 				
+			} else if (world.valueTranslator(y1, x1) > 0) {
+				var value = world.calculate(y1, x1);
+
+				setMapValue(y1, x1, -value);
 			}
 		}, true ); // true so that controller also acts on y, x
 	}
