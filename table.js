@@ -87,6 +87,18 @@ function init() {
 
 	makeTable(rows, cols);
 	makeDisplay();
+
+	document.onkeydown = function(e) {
+		if (e.keyCode >= 37 && e.keyCode <= 40) {
+			var i = keyToDir(e);
+
+			var pLoc = world.playerLoc;
+			var coord = calculateFromI( pLoc[0], pLoc[1], i);
+			var y = coord[0], x = coord[1];
+
+			controller.master( "clicked", y, x);
+		}
+	}
 };
 
 window.onload = init;
@@ -99,7 +111,6 @@ var controller = {
 			red.response(y, x);
 			blocks.controller(y,x);
 			red.testIfSurrounded(y, x);
-
 		}
 	},
 
@@ -107,7 +118,7 @@ var controller = {
 		var ele = document.getElementById(y + "_" + x);
 
 		world.changeMap(y, x, "g") // appends "g" onto the map where player clicked
-		world.playerLoc = [y, x];
+		world.setPLoc(y, x);
 
 	}
 	
