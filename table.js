@@ -1,6 +1,9 @@
 var world = {
 	map: [],
 	playerLoc: [0,0],
+	setPLoc(y, x) {
+		this.playerLoc = [y, x];
+	},
 
 	classTranslator(value) { // give it a letter (ex: "r") to get back the right color/ class ("red"). Also, can work in reverse
 		if (value.length <= 1) {
