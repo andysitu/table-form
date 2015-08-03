@@ -89,7 +89,7 @@ var blocks = {
 			return true;
 		}
 	}
-}
+};
 
 function init() {
 	var cols = Math.floor((window.innerWidth / 10) * 0.80);
@@ -238,4 +238,16 @@ var red = {
 
 		}, true)
 	}
-}
+};
+
+var green = {
+	_blocks: 0,
+
+	get blocks() {
+		return this._blocks;
+	},
+
+	set blocks(value) {
+		this._blocks = value;
+	}
+};
