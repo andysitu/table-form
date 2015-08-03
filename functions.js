@@ -144,3 +144,17 @@ function setMapValue(y, x, value) {
 		throw("Invalid coordinates for setMapValue: " + y + " " + x);
 	}
 }
+
+function keyToDir(e) { // translates e.keyCode to return a string of the direction
+		if (e.keyCode == 37) {
+			return 0;
+		} else if (e.keyCode == 38) {
+			return 1;
+		} else if (e.keyCode == 39) {
+			return 2;
+		} else if (e.keyCode == 40) {
+			return 3;
+		} else {
+			return false;
+		}
+}
