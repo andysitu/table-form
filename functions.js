@@ -63,6 +63,7 @@ function makeDisplay() {
 
 function display(msg) {
 	var disp = document.getElementById("msg");
+	throw("");
 
 	disp.value = msg;
 }
@@ -133,13 +134,10 @@ function setMapValue(y, x, value) {
 			ele.innerHTML = "";
 			ele = null;
 
-			green.profit -= oldValue;	
-
 			controller.calculator(y, x);
 
 		} else if (value !== oldValue) {
 			cell.innerHTML = value;
-			green.profit += difference;	
 		}
 
 	} else {

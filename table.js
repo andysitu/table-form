@@ -67,7 +67,6 @@ var world = {
 var controller = {
 	master(status, y, x) {
 		if (status === "clicked") {
-			green.calculateBlocks();
 			this.clicked(y,x);
 			red.response(y, x); // runs controller.calculator from red block placement
 			this.calculator(y,x);
@@ -216,33 +215,7 @@ var red = {
 };
 
 var green = {
-	_blocks: 0,
 
-	get blocks() {
-		return this._blocks;
-	},
-
-	set blocks(value) {
-		this._blocks = value;
-		return this._blocks;
-	},
-
-	calculateBlocks() {
-		this.blocks += this.profit;
-
-		display("You made a profit of " + this.profit + " and now have " + this.blocks + " blocks.");
-	},
-
-	_profit: 0,
-
-	get profit() {
-		return this._profit;
-	},
-
-	set profit(value) {
-		this._profit = value;
-		return this._profit;
-	}
 };
 
 function init() {
