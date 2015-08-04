@@ -1,6 +1,6 @@
 var world = {
 	map: [],
-	playerLoc: [0,0],
+	playerLoc: [1,1],
 	setPLoc(y, x) {
 		this.playerLoc = [y, x];
 	},
@@ -81,28 +81,6 @@ var blocks = {
 	}
 };
 
-function init() {
-	var cols = Math.floor((window.innerWidth / 10) * 0.80);
-	var rows = Math.floor(window.innerHeight / 10 - 2);
-
-	makeTable(rows, cols);
-	makeDisplay();
-
-	document.onkeydown = function(e) {
-		if (e.keyCode >= 37 && e.keyCode <= 40) {
-			var i = keyToDir(e);
-
-			var pLoc = world.playerLoc;
-			var coord = calculateFromI( pLoc[0], pLoc[1], i);
-			var y = coord[0], x = coord[1];
-
-			controller.master( "clicked", y, x);
-		}
-	}
-};
-
-window.onload = init;
-
 var controller = {
 	master(status, y, x) {
 		if (status === "clicked") {
@@ -110,7 +88,6 @@ var controller = {
 			this.clicked(y,x);
 			red.response(y, x);
 			blocks.controller(y,x);
-			red.testIfSurrounded(y, x);
 		}
 	},
 
@@ -268,3 +245,25 @@ var green = {
 		return this._profit;
 	}
 };
+
+function init() {
+	var cols = Math.floor((window.innerWidth / 10) * 0.80);
+	var rows = Math.floor(window.innerHeight / 10 - 2);
+
+	makeTable(rows, cols);
+	makeDisplay();
+
+	document.onkeydown = function(e) {
+		if (e.keyCode >= 37 && e.keyCode <= 40) {
+			var i = keyToDir(e);
+
+			var pLoc = world.playerLoc;
+			var coord = calculateFromI( pLoc[0], pLoc[1], i);
+			var y = coord[0], x = coord[1];
+
+			controller.master( "clicked", y, x);
+		}
+	}
+};
+
+window.onload = init;
