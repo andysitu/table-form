@@ -238,6 +238,14 @@ function init() {
 			controller.master( "clicked", pLoc[0], pLoc[1]);
 		}
 	}
+
+	var table = document.getElementById("table");
+
+	function clicky(event) {
+		console.log(event);
+	}
+
+	table.addEventListener("click", clicky, false)
 };
 
 window.onload = init;

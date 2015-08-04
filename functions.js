@@ -16,13 +16,6 @@ function makeTable(rows, cols) {
 
 			tbody.rows[i].insertCell(j);
 			tbody.rows[i].cells[j].id = i + "_" + j;
-			tbody.rows[i].cells[j].onclick = function(e) {
-				var str = /(\d*)_(\d*)/.exec(this.id);
-				var y = Number(str[1]); 
-				var x = Number(str[2]);
-
-				controller.master("clicked", y, x);
-			}
 		}
 	}
 
