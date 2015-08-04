@@ -69,7 +69,7 @@ var controller = {
 		if (status === "clicked") {
 			green.calculateBlocks();
 			this.clicked(y,x);
-			red.response(y, x);
+			red.response(y, x); // runs controller.calculator from red block placement
 			this.calculator(y,x);
 		}
 	},
@@ -90,7 +90,7 @@ var controller = {
 
 				setMapValue(y1, x1, value);
 				
-			} else if (world.valueTranslator(y1, x1) > 0) {
+			} else if (world.valueTranslator(y1, x1) < 0) {
 				var value = world.calculate(y1, x1);
 
 				setMapValue(y1, x1, -value);

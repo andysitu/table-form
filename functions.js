@@ -135,6 +135,8 @@ function setMapValue(y, x, value) {
 
 			green.profit -= oldValue;	
 
+			controller.calculator(y, x);
+
 		} else if (value !== oldValue) {
 			cell.innerHTML = value;
 			green.profit += difference;	
