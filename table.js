@@ -242,7 +242,13 @@ function init() {
 	var table = document.getElementById("table");
 
 	function clicky(event) {
-		console.log(event);
+		var target = event.target;
+
+		var str = /(\d*)_(\d*)/.exec(target.id);
+		var y = Number(str[1]); 
+		var x = Number(str[2]);
+
+		controller.master("clicked", y, x);
 	}
 
 	table.addEventListener("click", clicky, false)
