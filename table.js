@@ -2,7 +2,9 @@ var world = {
 	map: [],
 	playerLoc: [1,1],
 	setPLoc(y, x) {
-		this.playerLoc = [y, x];
+		if (coordValid(y, x)) {
+			this.playerLoc = [y, x];
+		}
 	},
 
 	classTranslator(value) { // give it a letter (ex: "r") to get back the right color/ class ("red"). Also, can work in reverse
@@ -231,9 +233,9 @@ function init() {
 
 			var pLoc = world.playerLoc;
 			var coord = calculateFromI( pLoc[0], pLoc[1], i);
-			var y = coord[0], x = coord[1];
+			pLoc = [coord[0], coord[1]];
 
-			controller.master( "clicked", y, x);
+			controller.master( "clicked", pLoc[0], pLoc[1]);
 		}
 	}
 };
