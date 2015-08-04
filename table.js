@@ -67,20 +67,28 @@ var world = {
 
 
 var controller = {
+	turn: "g",
+	switchTurn() {
+		if (this.turn === 'g') {
+			this.turn = 'r';
+		} else if (this.turn === 'r') {
+			this.turn = 'g';
+		} else {
+			throw("Error in controller.switchTurn " + this.turn);
+		}
+	},
+
 	master(status, y, x) {
 		if (status === "clicked") {
 			this.clicked(y,x);
-			red.response(y, x); // runs controller.calculator from red block placement
-			this.calculator(y,x);
 		}
 	},
 
 	clicked(y, x) {
 		var ele = document.getElementById(y + "_" + x);
 
-		world.changeMap(y, x, "g") // appends "g" onto the map where player clicked
-		world.setPLoc(y, x);
-
+		world.changeMap(y, x, this.turn) // appends "g" onto the map where player clicked
+		this.switchTurn();
 	},
 
 	calculator(y, x) { // handles what to do with destroying blocks, etc depending on their values.
@@ -214,10 +222,6 @@ var red = {
 
 		}, true)
 	}
-};
-
-var green = {
-
 };
 
 function init() {
