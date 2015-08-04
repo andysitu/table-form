@@ -24,43 +24,6 @@ function makeTable(rows, cols) {
 	tbody = null;
 }
 
-function makeDisplay() {
-	var table = document.getElementById("table");
-
-	var leftValue = table.getBoundingClientRect().right;
-	leftValue += 10;
-
-	var width = document.body.scrollWidth;
-	width -= (leftValue + 15);
-
-	var height = table.getBoundingClientRect().bottom - table.getBoundingClientRect().top - 10;
-
-	var disp = document.createElement("textarea");
-
-	disp.id = "msg";
-	disp.wrap = "hard"
-	
-	document.body.appendChild(disp);
-
-	var sheet = document.styleSheets[0];
-
-	var string = "#msg {position: absolute;top: 10px; left: " + leftValue +"px; width: " + width + "px; height: " + height + "px; }"
-
-	sheet.insertRule(string, 0);
-
-	table = null;
-	right = null;
-	disp = null;
-	
-	}
-
-function display(msg) {
-	var disp = document.getElementById("msg");
-	throw("");
-
-	disp.value = msg;
-}
-
 function calculateFromI(y, x, i) { // gives an array [y, x] of new coordinates based on direcion i and old coordinates y, x
 	switch(i) {
 		case 0: return [y, x - 1]; // left

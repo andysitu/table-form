@@ -221,11 +221,10 @@ var green = {
 };
 
 function init() {
-	var cols = Math.floor((window.innerWidth / 10) * 0.80);
+	var cols = Math.floor((window.innerWidth / 10) );
 	var rows = Math.floor(window.innerHeight / 10 - 2);
 
 	makeTable(rows, cols);
-	makeDisplay();
 
 	document.onkeydown = function(e) {
 		if (e.keyCode >= 37 && e.keyCode <= 40) {
