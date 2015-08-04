@@ -63,8 +63,26 @@ var world = {
 
 };
 
-var blocks = {
-	controller(y, x) { // handles what to do with destroying blocks, etc depending on their values.
+
+var controller = {
+	master(status, y, x) {
+		if (status === "clicked") {
+			green.calculateBlocks();
+			this.clicked(y,x);
+			red.response(y, x);
+			this.calculator(y,x);
+		}
+	},
+
+	clicked(y, x) {
+		var ele = document.getElementById(y + "_" + x);
+
+		world.changeMap(y, x, "g") // appends "g" onto the map where player clicked
+		world.setPLoc(y, x);
+
+	},
+
+	calculator(y, x) { // handles what to do with destroying blocks, etc depending on their values.
 		
 		funcCallFourDir(y, x, function(y1, x1) {
 			if (world.valueTranslator(y1, x1) > 0) {
@@ -78,25 +96,6 @@ var blocks = {
 				setMapValue(y1, x1, -value);
 			}
 		}, true ); // true so that controller also acts on y, x
-	}
-};
-
-var controller = {
-	master(status, y, x) {
-		if (status === "clicked") {
-			green.calculateBlocks();
-			this.clicked(y,x);
-			red.response(y, x);
-			blocks.controller(y,x);
-		}
-	},
-
-	clicked(y, x) {
-		var ele = document.getElementById(y + "_" + x);
-
-		world.changeMap(y, x, "g") // appends "g" onto the map where player clicked
-		world.setPLoc(y, x);
-
 	}
 	
 };
@@ -157,7 +156,7 @@ var red = {
 
 			world.changeMap(coord[0], coord[1], "r");
 
-			blocks.controller(coord[0], coord[1])
+			controller.calculator(coord[0], coord[1])
 
 			return true;
 
@@ -171,7 +170,7 @@ var red = {
 				var bool = world.changeMap(y, x, "r");
 
 				if ( bool ) {
-					blocks.controller(y, x);
+					controller.calculator(y, x);
 					return true;
 				}
 			}
