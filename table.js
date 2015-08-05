@@ -7,6 +7,24 @@ var world = {
 		}
 	},
 
+	affect(y, x) {
+
+	},
+
+	setColor(y, x, value) {
+		var ele = document.getElementById(y + "_" + x);
+
+		ele.value = (ele.value || 0) + value;
+		
+		if (ele.value > 0) {
+			ele.style.background = "green";
+		} else if (ele.value < 0) {
+			ele.style.background = "red";
+		} else {
+			ele.style.background = "";
+		}
+	},
+
 	classTranslator(value) { // give it a letter (ex: "r") to get back the right color/ class ("red"). Also, can work in reverse
 		if (value.length <= 1) {
 			switch(value) { // NOTE: ALSO UPDATE ELSE CASE AND VALUETRANSLATOR
