@@ -229,7 +229,7 @@ function init() {
 	var rows = Math.floor(window.innerHeight / 10 - 2);
 
 	makeTable(rows, cols);
-
+/*
 	document.onkeydown = function(e) {
 		if (e.keyCode >= 37 && e.keyCode <= 40) {
 			var i = keyToDir(e);
@@ -241,17 +241,19 @@ function init() {
 			controller.master( "clicked", pLoc[0], pLoc[1]);
 		}
 	}
-
+*/
 	var table = document.getElementById("table");
 
 	function clicky(event) {
 		var target = event.target;
 
 		var str = /(\d*)_(\d*)/.exec(target.id);
-		var y = Number(str[1]); 
-		var x = Number(str[2]);
+		if (str) {
+			var y = Number(str[1]); 
+			var x = Number(str[2]);
 
-		controller.master("clicked", y, x);
+			controller.master("clicked", y, x);
+		}
 	}
 
 	table.addEventListener("click", clicky, false)
