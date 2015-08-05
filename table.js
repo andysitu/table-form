@@ -17,9 +17,9 @@ var world = {
 		ele.value = (ele.value || 0) + value;
 		
 		if (ele.value > 0) {
-			ele.style.background = "green";
+			ele.style.background = "rgba(0, 155, 0, " + ele.value + ")";
 		} else if (ele.value < 0) {
-			ele.style.background = "red";
+			ele.style.background = "rgba(255, 0, 0, " + -ele.value + ")";
 		} else {
 			ele.style.background = "";
 		}
