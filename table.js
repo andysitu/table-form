@@ -159,8 +159,9 @@ var controller = {
 	clicked(y, x) {
 		var ele = document.getElementById(y + "_" + x);
 
-		world.effect(y, x, this.turn);
-		this.switchTurn();
+		if ( world.effect(y, x, this.turn) ) { // returns true if clicked was ' '
+			this.switchTurn();
+		}
 	},
 
 	calculator(y, x) { // handles what to do with destroying blocks, etc depending on their values.
