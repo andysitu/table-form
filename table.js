@@ -7,8 +7,17 @@ var world = {
 		}
 	},
 
-	effect(y, x) {
-		
+	effect(y, x) { // sets tiles around clicked cell into different shades of color
+		if (world.valueTranslator(y, x) > 0) { // green
+			value = 1;
+		} else {			// red
+			value = -1;
+		}
+		calculateXY(y, x, 1, 1, function(y1, x1) {
+			if (world.map[y1][x1] == ' ') {
+				world.setColor(y1, x1, 0.7 * value);
+			}
+		})
 	},
 
 	setColor(y, x, value) {
