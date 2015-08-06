@@ -60,7 +60,11 @@ var world = {
 						world.setColor(y1, x1, 0.55 * value);
 					}
 				});
+
+				return true;
 			}
+
+			return false;
 		} else {
 			return false;
 		}
