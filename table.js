@@ -1,6 +1,7 @@
 var world = {
 	map: [],
 	totalCells: 0,
+	filledCells: 0,
 	playerLoc: [1,1],
 	setPLoc(y, x) {
 		if (coordValid(y, x)) {
@@ -89,6 +90,12 @@ var world = {
 				}
 			} else {
 				ele.style.background = "";
+			}
+
+			if (ele.value !== 0) {
+				world.filledCells++;
+			} else {
+				world.filledCells--;
 			}
 		}
 	},
