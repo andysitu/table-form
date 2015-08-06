@@ -52,12 +52,14 @@ var world = {
 
 		ele.value = (ele.value || 0) + value;
 		
-		if (ele.value > 0) {
-			ele.style.background = "rgba(0, 155, 0, " + ele.value + ")";
-		} else if (ele.value < 0) {
-			ele.style.background = "rgba(255, 0, 0, " + -ele.value + ")";
-		} else {
-			ele.style.background = "";
+		if (world.map[y][x] === ' ') {
+			if (ele.value > 0) {
+				ele.style.background = "rgba(0, 155, 0, " + ele.value + ")";
+			} else if (ele.value < 0) {
+				ele.style.background = "rgba(255, 0, 0, " + -ele.value + ")";
+			} else {
+				ele.style.background = "";
+			}
 		}
 	},
 
@@ -143,6 +145,7 @@ var controller = {
 
 		world.changeMap(y, x, this.turn) // appends "g" onto the map where player clicked
 		this.switchTurn();
+		world.effect(y, x);
 	},
 
 	calculator(y, x) { // handles what to do with destroying blocks, etc depending on their values.
