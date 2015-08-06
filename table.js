@@ -7,8 +7,8 @@ var world = {
 		}
 	},
 
-	affect(y, x) {
-
+	effect(y, x) {
+		
 	},
 
 	setColor(y, x, value) {

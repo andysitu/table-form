@@ -24,12 +24,16 @@ function makeTable(rows, cols) {
 	tbody = null;
 }
 
-function calculateFromI(y, x, i) { // gives an array [y, x] of new coordinates based on direcion i and old coordinates y, x
+function calculateFromI(y, x, i, distance) { // gives an array [y, x] of new coordinates based on direcion i and old coordinates y, x
+	if (distance === undefined) {
+		distance = 1;
+	}
+
 	switch(i) {
-		case 0: return [y, x - 1]; // left
-		case 1: return [y - 1, x]; // up
-		case 2: return [y, x + 1]; // right
-		case 3: return [y + 1, x]; // down
+		case 0: return [y, x - distance]; // left
+		case 1: return [y - distance, x]; // up
+		case 2: return [y, x + distance]; // right
+		case 3: return [y + distance, x]; // down
 		default: throw "calculateFromI only takes i from 0-3, not " + i;
 	}
 }
