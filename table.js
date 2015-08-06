@@ -120,7 +120,16 @@ var world = {
 			case " ": return 0;
 			default: throw("Error in valueTranslator " + this.map[y][x]);
 		}	
-	}
+	},
+
+	endGame() {
+		if (this.filledCells === this.totalCells) {
+			this.countValues();
+			return true;
+		} else {
+			return false;
+		}
+	},
 
 
 };
