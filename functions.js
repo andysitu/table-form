@@ -66,11 +66,11 @@ function calculateXY(y, x, y1, x1, func) {
 	}
 }
 
-function funcCallFourDir(y, x, func, status) { // if sttus === true, then it'll also do function on y,x (original coordinate)
+function funcCallFourDir(y, x, func, status, distance) { // if sttus === true, then it'll also do function on y,x (original coordinate)
 	var coord = [0, 0];
 
 	for (var i = 0; i < 4; i++) {
-		coord = this.calculateFromI(y, x, i);
+		coord = this.calculateFromI(y, x, i, distance);
 
 		if ( coordValid(coord[0], coord[1]) ) {
 			func(coord[0], coord[1], i);
