@@ -118,7 +118,6 @@ function setMapValue(y, x, value) {
 			world.map[y][x] = " ";
 
 			var ele = document.getElementById(y + "_" + x);
-			ele.className = "";	
 			ele.innerHTML = "";
 			ele = null;
 
