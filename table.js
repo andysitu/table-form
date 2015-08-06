@@ -13,11 +13,38 @@ var world = {
 		} else {			// red
 			value = -1;
 		}
+
+		funcCallFourDir(y, x, function(y1, x1) {
+			if (world.map[y1][x1] == ' ') {
+				world.setColor(y1, x1, 0.8 * value);
+			}
+		}, false, 1);
+		funcCallFourDir(y, x, function(y1, x1) {
+			if (world.map[y1][x1] == ' ') {
+				world.setColor(y1, x1, 0.6 * value);
+			}
+		}, false, 2);
+		funcCallFourDir(y, x, function(y1, x1) {
+			if (world.map[y1][x1] == ' ') {
+				world.setColor(y1, x1, 0.4 * value);
+			}
+		}, false, 3);
+
 		calculateXY(y, x, 1, 1, function(y1, x1) {
 			if (world.map[y1][x1] == ' ') {
 				world.setColor(y1, x1, 0.7 * value);
 			}
-		})
+		});
+		calculateXY(y, x, 2, 1, function(y1, x1) {
+			if (world.map[y1][x1] == ' ') {
+				world.setColor(y1, x1, 0.55 * value);
+			}
+		});
+		calculateXY(y, x, 1, 2, function(y1, x1) {
+			if (world.map[y1][x1] == ' ') {
+				world.setColor(y1, x1, 0.55 * value);
+			}
+		});
 	},
 
 	setColor(y, x, value) {
