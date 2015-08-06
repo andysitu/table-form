@@ -7,44 +7,63 @@ var world = {
 		}
 	},
 
-	effect(y, x) { // sets tiles around clicked cell into different shades of color
-		if (world.valueTranslator(y, x) > 0) { // green
-			value = 1;
-		} else {			// red
-			value = -1;
+	effect(y, x, colorValue) { // sets tiles around clicked cell into different shades of color
+		if ( coordValid(y, x) ) {
+			if (this.map[y][x] === " ") {
+
+				var ele = document.getElementById(y + "_" + x);
+
+				var color = '';
+
+				if (colorValue === 'g') {
+					value = 1;
+					color = 'green';
+					ele.style.background = "rgba(0, 155, 0, 1)";
+				} else {			// red
+					value = -1;
+					color = 'red';
+					ele.style.background = "rgba(255, 0, 0, 1)";
+				}
+
+				ele.className = color;
+			
+				this.map[y][x] = colorValue;
+
+				funcCallFourDir(y, x, function(y1, x1) {
+					if (world.map[y1][x1] == ' ') {
+						world.setColor(y1, x1, 0.8 * value);
+					}
+				}, false, 1);
+				funcCallFourDir(y, x, function(y1, x1) {
+					if (world.map[y1][x1] == ' ') {
+						world.setColor(y1, x1, 0.6 * value);
+					}
+				}, false, 2);
+				funcCallFourDir(y, x, function(y1, x1) {
+					if (world.map[y1][x1] == ' ') {
+						world.setColor(y1, x1, 0.4 * value);
+					}
+				}, false, 3);
+
+				calculateXY(y, x, 1, 1, function(y1, x1) {
+					if (world.map[y1][x1] == ' ') {
+						world.setColor(y1, x1, 0.7 * value);
+					}
+				});
+				calculateXY(y, x, 2, 1, function(y1, x1) {
+					if (world.map[y1][x1] == ' ') {
+						world.setColor(y1, x1, 0.55 * value);
+					}
+				});
+				calculateXY(y, x, 1, 2, function(y1, x1) {
+					if (world.map[y1][x1] == ' ') {
+						world.setColor(y1, x1, 0.55 * value);
+					}
+				});
+			}
+		} else {
+			return false;
 		}
-
-		funcCallFourDir(y, x, function(y1, x1) {
-			if (world.map[y1][x1] == ' ') {
-				world.setColor(y1, x1, 0.8 * value);
-			}
-		}, false, 1);
-		funcCallFourDir(y, x, function(y1, x1) {
-			if (world.map[y1][x1] == ' ') {
-				world.setColor(y1, x1, 0.6 * value);
-			}
-		}, false, 2);
-		funcCallFourDir(y, x, function(y1, x1) {
-			if (world.map[y1][x1] == ' ') {
-				world.setColor(y1, x1, 0.4 * value);
-			}
-		}, false, 3);
-
-		calculateXY(y, x, 1, 1, function(y1, x1) {
-			if (world.map[y1][x1] == ' ') {
-				world.setColor(y1, x1, 0.7 * value);
-			}
-		});
-		calculateXY(y, x, 2, 1, function(y1, x1) {
-			if (world.map[y1][x1] == ' ') {
-				world.setColor(y1, x1, 0.55 * value);
-			}
-		});
-		calculateXY(y, x, 1, 2, function(y1, x1) {
-			if (world.map[y1][x1] == ' ') {
-				world.setColor(y1, x1, 0.55 * value);
-			}
-		});
 	},
 
 	setColor(y, x, value) {
@@ -79,21 +98,6 @@ var world = {
 						 throw("Unknown value given to classTranslator");
 			}
 		}
-	},
-	changeMap(y, x, colorValue) { // Changes the value in map array and appends the corresponding class in the table-cell
-		if ( coordValid(y, x) ) {
-			if (this.map[y][x] === " ") {
-				this.map[y][x] = colorValue;
-
-				var ele = document.getElementById(y + "_" + x);
-				ele.className = this.classTranslator(colorValue);
-
-				return true;
-			}
-		} else {
-			return false;
-		}
-
 	},
 
 	calculate(y, x) { // will calculate the points of that current position
@@ -143,9 +147,8 @@ var controller = {
 	clicked(y, x) {
 		var ele = document.getElementById(y + "_" + x);
 
-		world.changeMap(y, x, this.turn) // appends "g" onto the map where player clicked
+		world.effect(y, x, this.turn);
 		this.switchTurn();
-		world.effect(y, x);
 	},
 
 	calculator(y, x) { // handles what to do with destroying blocks, etc depending on their values.
