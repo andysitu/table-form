@@ -73,9 +73,17 @@ var world = {
 		
 		if (world.map[y][x] === ' ') {
 			if (ele.value > 0) {
-				ele.style.background = "rgba(0, 155, 0, " + ele.value + ")";
+				if (ele.value > 0.9) {
+					ele.style.background = "rgba(0, 155, 0, 0.9)";
+				} else {
+					ele.style.background = "rgba(0, 155, 0, " + ele.value + ")";
+				}
 			} else if (ele.value < 0) {
-				ele.style.background = "rgba(255, 0, 0, " + -ele.value + ")";
+				if (ele.value < -0.9) {
+					ele.style.background = "rgba(255, 0, 0, 0.9)";
+				} else {
+					ele.style.background = "rgba(255, 0, 0, " + -ele.value + ")";
+				}
 			} else {
 				ele.style.background = "";
 			}
