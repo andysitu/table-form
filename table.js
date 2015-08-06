@@ -82,7 +82,7 @@ var world = {
 				}
 			} else if (ele.value < 0) {
 				if (ele.value < -0.9) {
-					ele.style.background = "rgba(255, 0, 0, 0.9)";
+					ele.style.background = "rgba(255, 0, 0, 0.85)";
 				} else {
 					ele.style.background = "rgba(255, 0, 0, " + -ele.value + ")";
 				}
