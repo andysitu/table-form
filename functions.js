@@ -18,6 +18,8 @@ function makeTable(rows, cols) {
 			tbody.rows[i].cells[j].id = i + "_" + j;
 		}
 	}
+	
+	world.totalCells = i * j;
 
 	document.body.appendChild(table);
 	table = null;

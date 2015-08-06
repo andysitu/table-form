@@ -1,5 +1,6 @@
 var world = {
 	map: [],
+	totalCells: 0,
 	playerLoc: [1,1],
 	setPLoc(y, x) {
 		if (coordValid(y, x)) {
@@ -159,7 +160,6 @@ var controller = {
 			}
 		}, true ); // true so that controller also acts on y, x
 	}
-	
 };
 
 function init() {
