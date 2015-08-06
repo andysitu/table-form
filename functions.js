@@ -38,6 +38,34 @@ function calculateFromI(y, x, i, distance) { // gives an array [y, x] of new coo
 	}
 }
 
+function calculateXY(y, x, y1, x1, func) {
+	var y2 = 0, x2 = 0;
+
+	y2 = y - y1;
+	x2 = x - x1;
+	if (coordValid(y2, x2)) {
+		func(y2, x2);
+	}
+
+	y2 = y + y1;
+	x2 = x - x1;
+	if (coordValid(y2, x2)) {
+		func(y2, x2);
+	}
+
+	y2 = y - y1;
+	x2 = x + x1;
+	if (coordValid(y2, x2)) {
+		func(y2, x2);
+	}
+
+	y2 = y + y1;
+	x2 = x + x1;
+	if (coordValid(y2, x2)) {
+		func(y2, x2);
+	}
+}
+
 function funcCallFourDir(y, x, func, status) { // if sttus === true, then it'll also do function on y,x (original coordinate)
 	var coord = [0, 0];
 
