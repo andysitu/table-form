@@ -119,14 +119,18 @@ var world = {
 	},
 
 	countValues() {
-		var ele = null, totalValue = 0;
+		var cell = null, totalValue = 0;
 
 		for (var i = 0; i < this.map.length; i++) {
 			for (var j = 0; j < this.map[i].length; j++) {
-				ele = document.getElementById(i + "_" + j);
+				cell = world.map[i][j];
 				
-				if (ele.value) {
-				totalValue += Number(ele.value);
+				if (cell === 'g') {
+					totalValue += 1;
+				} else if (cell === 'r') {
+					totalValue -= 1;
+				} else {
+					totalValue += cell;
 				}
 			}
 		}
