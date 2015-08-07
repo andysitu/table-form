@@ -94,13 +94,16 @@ var world = {
 				ele.style.background = "";
 			}
 
-
-			if (world.map[y][x] !== 0 && oldValue === 0) {
-				world.filledCells++;
-			} else if (world.map[y][x] === 0 && oldValue !== 0) {
-				world.filledCells--;
-			}
+			this.filledCellCounter(world.map[y][x], oldValue);
 		}
+	},
+
+	filledCellCounter(newValue, oldValue) {
+		if (newValue !== 0 && oldValue === 0) {
+			world.filledCells++;
+		} else if (newValue === 0 && oldValue !== 0) {
+			world.filledCells--;
+		}	
 	},
 
 	endGame() {
