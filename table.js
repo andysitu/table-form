@@ -11,7 +11,7 @@ var world = {
 
 	effect(y, x, colorValue) { // sets tiles around clicked cell into different shades of color
 		if ( coordValid(y, x) ) {
-			if (this.map[y][x] === 0) {
+			if (this.map[y][x] !== 'g' && this.map[y][x] !== 'r') {
 				var ele = document.getElementById(y + "_" + x);
 
 				var color = '';
