@@ -127,6 +127,18 @@ var world = {
 		}
 
 		return Number(totalValue.toFixed(2));
+	},
+
+	makeAllColor(color) {
+		var cell = null;
+
+		for (var i = 0; i < world.map.length; i++) {
+			for (var j = 0; j< world.map[i].length; j++) {
+				cell = document.getElementById(i + "_" + j);
+
+				cell.style.background = color;
+			}
+		}
 	}
 };
 
