@@ -156,6 +156,8 @@ var controller = {
 			this.switchTurn();
 		}
 	},
+
+	stopClicky: null
 };
 
 function init() {
@@ -179,6 +181,13 @@ function init() {
 	}
 
 	table.addEventListener("click", clicky, false)
+
+	table = null;
+
+	controller.stopClicky = function() {
+		var table = document.getElementById("table");
+		table.removeEventListener("click", clicky, false);
+	}
 };
 
 window.onload = init;
