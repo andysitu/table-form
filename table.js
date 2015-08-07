@@ -135,7 +135,7 @@ var world = {
 			}
 		}
 
-		return totalValue;
+		return Number(totalValue.toFixed(2));
 	}
 };
 
