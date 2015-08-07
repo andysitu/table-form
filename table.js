@@ -58,28 +58,28 @@ var world = {
 	},
 
 	setColor(y, x, value) {
-		var ele = document.getElementById(y + "_" + x);
+		if (world.map[y][x] !== 'g' && world.map[y][x] !== 'r') {
+			var ele = document.getElementById(y + "_" + x);
 
-		ele.value = (ele.value || 0) + value;
-		
-		if (world.map[y][x] === ' ') {
-			if (ele.value > 0) {
-				if (ele.value > 0.9) {
+			world.map[y][x] += value;
+
+			if (world.map[y][x] > 0) {
+				if (world.map[y][x] > 0.9) {
 					ele.style.background = "rgba(0, 155, 0, 0.9)";
 				} else {
-					ele.style.background = "rgba(0, 155, 0, " + ele.value + ")";
+					ele.style.background = "rgba(0, 155, 0, " + world.map[y][x] + ")";
 				}
-			} else if (ele.value < 0) {
-				if (ele.value < -0.9) {
+			} else if (world.map[y][x] < 0) {
+				if (world.map[y][x] < -0.9) {
 					ele.style.background = "rgba(255, 0, 0, 0.85)";
 				} else {
-					ele.style.background = "rgba(255, 0, 0, " + -ele.value + ")";
+					ele.style.background = "rgba(255, 0, 0, " + -world.map[y][x] + ")";
 				}
 			} else {
 				ele.style.background = "";
 			}
 
-			if (ele.value !== 0) {
+			if (world.map[y][x] !== 0) {
 				world.filledCells++;
 			} else {
 				world.filledCells--;
