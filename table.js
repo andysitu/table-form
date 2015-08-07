@@ -155,16 +155,10 @@ var controller = {
 		}
 	},
 
-	master(status, y, x) {
-		if (status === "clicked") {
-			this.clicked(y,x);
-		}
-	},
-
 	clicked(y, x) {
 		var ele = document.getElementById(y + "_" + x);
 
-		if ( world.effect(y, x, this.turn) ) { // returns true if clicked was ' '
+		if ( world.effect(y, x, this.turn) ) { // returns true if clicked was on empty space
 			this.switchTurn();
 		}
 	},
@@ -188,7 +182,7 @@ function init() {
 			var y = Number(str[1]); 
 			var x = Number(str[2]);
 
-			controller.master("clicked", y, x);
+			controller.clicked(y, x);
 		}
 	}
 
