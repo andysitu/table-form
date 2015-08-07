@@ -111,8 +111,7 @@ var world = {
 
 	endGame() {
 		if (this.filledCells === this.totalCells) {
-			this.countValues();
-			return true;
+			return this.countValues();
 		} else {
 			return false;
 		}
