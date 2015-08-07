@@ -108,32 +108,6 @@ function getMapValue(y, x) {
 	}
 }
 
-function setMapValue(y, x, value) {
-	if ( coordValid(y, x) ) {
-		var oldValue = getMapValue(y, x);
-
-		var cell = document.getElementById(y + "_" + x);
-
-		var difference = value - oldValue;
-
-		if (value < 0) {
-			world.map[y][x] = " ";
-
-			var ele = document.getElementById(y + "_" + x);
-			ele.innerHTML = "";
-			ele = null;
-
-			controller.calculator(y, x);
-
-		} else if (value !== oldValue) {
-			cell.innerHTML = value;
-		}
-
-	} else {
-		throw("Invalid coordinates for setMapValue: " + y + " " + x);
-	}
-}
-
 function keyToDir(e) { // translates e.keyCode to return a string of the direction
 		if (e.keyCode == 37) {
 			return 0;
