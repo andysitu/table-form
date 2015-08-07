@@ -29,23 +29,35 @@ var world = {
 				this.map[y][x] = colorValue;
 
 				funcCallFourDir(y, x, function(y1, x1) {
-					world.setColor(y1, x1, 0.78 * value);
+					world.setColor(y1, x1, 0.80 * value);
 				}, false, 1);
 				funcCallFourDir(y, x, function(y1, x1) {
 					world.setColor(y1, x1, 0.55 * value);
 				}, false, 2);
 				funcCallFourDir(y, x, function(y1, x1) {
-					world.setColor(y1, x1, 0.33 * value);
+					world.setColor(y1, x1, 0.35 * value);
 				}, false, 3);
+				funcCallFourDir(y, x, function(y1, x1) {
+					world.setColor(y1, x1, 0.15 * value);
+				}, false, 4);
 
 				calculateXY(y, x, 1, 1, function(y1, x1) {
-					world.setColor(y1, x1, 0.71 * value);
+					world.setColor(y1, x1, 0.70 * value);
 				});
 				calculateXY(y, x, 2, 1, function(y1, x1) {
-					world.setColor(y1, x1, 0.46 * value);
+					world.setColor(y1, x1, 0.45 * value);
 				});
 				calculateXY(y, x, 1, 2, function(y1, x1) {
-					world.setColor(y1, x1, 0.46 * value);
+					world.setColor(y1, x1, 0.45 * value);
+				});
+				calculateXY(y, x, 3, 1, function(y1, x1) {
+					world.setColor(y1, x1, 0.25 * value);
+				});
+				calculateXY(y, x, 1, 3, function(y1, x1) {
+					world.setColor(y1, x1, 0.25 * value);
+				});
+				calculateXY(y, x, 2, 2, function(y1, x1) {
+					world.setColor(y1, x1, 0.30 * value);
 				});
 
 				return true;
