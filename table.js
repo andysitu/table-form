@@ -159,6 +159,19 @@ var controller = {
 		var ele = document.getElementById(y + "_" + x);
 
 		if ( world.effect(y, x, this.turn) ) { // returns true if clicked was on empty space
+			var value = world.endGame();
+
+			if (value !== false && this.turn === 'r') {
+				if (value > 0) {
+					world.makeAllColor("green");
+					this.stopClicky();
+				} else if (value < 0) {
+					world.makeAllColor("red");
+					this.stopClicky();
+				}
+
+			}
+
 			this.switchTurn();
 		}
 	},
