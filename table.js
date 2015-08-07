@@ -73,6 +73,7 @@ var world = {
 
 	setColor(y, x, value) {
 		if (world.map[y][x] !== 'g' && world.map[y][x] !== 'r') {
+			var oldValue = world.map[y][x];
 			var ele = document.getElementById(y + "_" + x);
 
 			world.map[y][x] += value;
@@ -93,9 +94,10 @@ var world = {
 				ele.style.background = "";
 			}
 
-			if (world.map[y][x] !== 0) {
+
+			if (world.map[y][x] !== 0 && oldValue === 0) {
 				world.filledCells++;
-			} else {
+			} else if (world.map[y][x] === 0 && oldValue !== 0) {
 				world.filledCells--;
 			}
 		}
