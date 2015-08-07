@@ -84,7 +84,7 @@ var world = {
 					ele.style.background = "rgba(0, 155, 0, " + world.map[y][x] + ")";
 				}
 			} else if (world.map[y][x] < 0) {
-				if (world.map[y][x] < -0.9) {
+				if (world.map[y][x] < -0.85) {
 					ele.style.background = "rgba(255, 0, 0, 0.85)";
 				} else {
 					ele.style.background = "rgba(255, 0, 0, " + -world.map[y][x] + ")";
@@ -99,19 +99,6 @@ var world = {
 				world.filledCells--;
 			}
 		}
-	},
-
-	calculate(y, x) { // will calculate the points of that current position
-							 // color is for theoretical calculation if something were placed there
-		var sum = 0;
-
-		funcCallFourDir(y, x, function(y1, x1) {
-			sum += world.valueTranslator(y1, x1);
-		})
-
-		sum += world.valueTranslator(y, x);
-
-		return sum;
 	},
 
 	endGame() {
@@ -172,8 +159,8 @@ var controller = {
 };
 
 function init() {
-	var cols = Math.floor((window.innerWidth / 10) );
-	var rows = Math.floor(window.innerHeight / 10 - 2);
+	var cols = Math.floor((window.innerWidth / 9) );
+	var rows = Math.floor(window.innerHeight / 9 - 2);
 
 	makeTable(rows, cols);
 
