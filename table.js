@@ -102,7 +102,7 @@ var world = {
 	},
 
 	endGame() {
-		if (this.filledCells === this.totalCells) {
+		if (this.filledCells >= this.totalCells) {
 			return this.countValues();
 		} else {
 			return false;
@@ -125,7 +125,6 @@ var world = {
 				}
 			}
 		}
-
 		return Number(totalValue.toFixed(2));
 	},
 
