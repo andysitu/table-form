@@ -5,54 +5,12 @@ var world = {
 
 	effect(y, x, colorValue) { // sets tiles around clicked cell into different shades of color
 		if ( coordValid(y, x) ) {
-			if (this.map[y][x] !== 'g' && this.map[y][x] !== 'r') {
-				var ele = document.getElementById(y + "_" + x);
+			if (colorValue === 'g' && this.map[y][x] >= 0) {
+				world.setArea(y, x, colorValue);
 
-				var color = '';
-
-				if (colorValue === 'g') {
-					value = 1;
-					color = 'green';
-					ele.style.background = "rgba(0, 155, 0, 1)";
-				} else {			// red
-					value = -1;
-					color = 'red';
-					ele.style.background = "rgba(255, 0, 0, 1)";
-				}
-
-				this.map[y][x] = colorValue;
-
-				funcCallFourDir(y, x, function(y1, x1) {
-					world.setColor(y1, x1, 0.80 * value);
-				}, false, 1);
-				funcCallFourDir(y, x, function(y1, x1) {
-					world.setColor(y1, x1, 0.55 * value);
-				}, false, 2);
-				funcCallFourDir(y, x, function(y1, x1) {
-					world.setColor(y1, x1, 0.35 * value);
-				}, false, 3);
-				funcCallFourDir(y, x, function(y1, x1) {
-					world.setColor(y1, x1, 0.15 * value);
-				}, false, 4);
-
-				calculateXY(y, x, 1, 1, function(y1, x1) {
-					world.setColor(y1, x1, 0.70 * value);
-				});
-				calculateXY(y, x, 2, 1, function(y1, x1) {
-					world.setColor(y1, x1, 0.45 * value);
-				});
-				calculateXY(y, x, 1, 2, function(y1, x1) {
-					world.setColor(y1, x1, 0.45 * value);
-				});
-				calculateXY(y, x, 3, 1, function(y1, x1) {
-					world.setColor(y1, x1, 0.25 * value);
-				});
-				calculateXY(y, x, 1, 3, function(y1, x1) {
-					world.setColor(y1, x1, 0.25 * value);
-				});
-				calculateXY(y, x, 2, 2, function(y1, x1) {
-					world.setColor(y1, x1, 0.30 * value);
-				});
+				return true;
+			} else if (colorValue === 'r' && this.map[y][x] <= 0) {
+				world.setArea(y, x, colorValue);
 
 				return true;
 			}
@@ -61,6 +19,56 @@ var world = {
 		} else {
 			return false;
 		}
+	},
+
+	setArea(y, x, colorValue) {
+		var ele = document.getElementById(y + "_" + x);
+
+		var color = '';
+
+		if (colorValue === 'g') {
+			value = 1;
+			color = 'green';
+			ele.style.background = "rgba(0, 155, 0, 1)";
+		} else {			// red
+			value = -1;
+			color = 'red';
+			ele.style.background = "rgba(255, 0, 0, 1)";
+		}
+
+		this.map[y][x] = colorValue;
+
+		funcCallFourDir(y, x, function(y1, x1) {
+			world.setColor(y1, x1, 0.80 * value);
+		}, false, 1);
+		funcCallFourDir(y, x, function(y1, x1) {
+			world.setColor(y1, x1, 0.55 * value);
+		}, false, 2);
+		funcCallFourDir(y, x, function(y1, x1) {
+			world.setColor(y1, x1, 0.35 * value);
+		}, false, 3);
+		funcCallFourDir(y, x, function(y1, x1) {
+			world.setColor(y1, x1, 0.15 * value);
+		}, false, 4);
+
+		calculateXY(y, x, 1, 1, function(y1, x1) {
+			world.setColor(y1, x1, 0.70 * value);
+		});
+		calculateXY(y, x, 2, 1, function(y1, x1) {
+			world.setColor(y1, x1, 0.45 * value);
+		});
+		calculateXY(y, x, 1, 2, function(y1, x1) {
+			world.setColor(y1, x1, 0.45 * value);
+		});
+		calculateXY(y, x, 3, 1, function(y1, x1) {
+			world.setColor(y1, x1, 0.25 * value);
+		});
+		calculateXY(y, x, 1, 3, function(y1, x1) {
+			world.setColor(y1, x1, 0.25 * value);
+		});
+		calculateXY(y, x, 2, 2, function(y1, x1) {
+			world.setColor(y1, x1, 0.30 * value);
+		});
 	},
 
 	setColor(y, x, value) {
