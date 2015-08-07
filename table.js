@@ -29,23 +29,23 @@ var world = {
 				this.map[y][x] = colorValue;
 
 				funcCallFourDir(y, x, function(y1, x1) {
-					world.setColor(y1, x1, 0.8 * value);
+					world.setColor(y1, x1, 0.78 * value);
 				}, false, 1);
 				funcCallFourDir(y, x, function(y1, x1) {
-					world.setColor(y1, x1, 0.6 * value);
+					world.setColor(y1, x1, 0.55 * value);
 				}, false, 2);
 				funcCallFourDir(y, x, function(y1, x1) {
-					world.setColor(y1, x1, 0.4 * value);
+					world.setColor(y1, x1, 0.33 * value);
 				}, false, 3);
 
 				calculateXY(y, x, 1, 1, function(y1, x1) {
-					world.setColor(y1, x1, 0.7 * value);
+					world.setColor(y1, x1, 0.71 * value);
 				});
 				calculateXY(y, x, 2, 1, function(y1, x1) {
-					world.setColor(y1, x1, 0.55 * value);
+					world.setColor(y1, x1, 0.46 * value);
 				});
 				calculateXY(y, x, 1, 2, function(y1, x1) {
-					world.setColor(y1, x1, 0.55 * value);
+					world.setColor(y1, x1, 0.46 * value);
 				});
 
 				return true;
