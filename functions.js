@@ -12,70 +12,67 @@ function makeTable(rows, cols) {
 		world.map[i] = new Array();
 
 		for (var j = 0; j <	 cols; j++) {
-			world.map[i][j] = " ";
+			world.map[i][j] = 0;
 
 			tbody.rows[i].insertCell(j);
 			tbody.rows[i].cells[j].id = i + "_" + j;
 		}
 	}
 
+	world.totalCells = i * j;
+
 	document.body.appendChild(table);
 	table = null;
 	tbody = null;
 }
 
-function makeDisplay() {
-	var table = document.getElementById("table");
-
-	var leftValue = table.getBoundingClientRect().right;
-	leftValue += 10;
-
-	var width = document.body.scrollWidth;
-	width -= (leftValue + 15);
-
-	var height = table.getBoundingClientRect().bottom - table.getBoundingClientRect().top - 10;
-
-	var disp = document.createElement("textarea");
-
-	disp.id = "msg";
-	disp.wrap = "hard"
-	
-	document.body.appendChild(disp);
-
-	var sheet = document.styleSheets[0];
-
-	var string = "#msg {position: absolute;top: 10px; left: " + leftValue +"px; width: " + width + "px; height: " + height + "px; }"
-
-	sheet.insertRule(string, 0);
-
-	table = null;
-	right = null;
-	disp = null;
-	
+function calculateFromI(y, x, i, distance) { // gives an array [y, x] of new coordinates based on direcion i and old coordinates y, x
+	if (distance === undefined) {
+		distance = 1;
 	}
 
-function display(msg) {
-	var disp = document.getElementById("msg");
-	throw("");
-
-	disp.value = msg;
-}
-
-function calculateFromI(y, x, i) { // gives an array [y, x] of new coordinates based on direcion i and old coordinates y, x
 	switch(i) {
-		case 0: return [y, x - 1]; // left
-		case 1: return [y - 1, x]; // up
-		case 2: return [y, x + 1]; // right
-		case 3: return [y + 1, x]; // down
+		case 0: return [y, x - distance]; // left
+		case 1: return [y - distance, x]; // up
+		case 2: return [y, x + distance]; // right
+		case 3: return [y + distance, x]; // down
 		default: throw "calculateFromI only takes i from 0-3, not " + i;
 	}
 }
 
-function funcCallFourDir(y, x, func, status) { // if sttus === true, then it'll also do function on y,x (original coordinate)
+function calculateXY(y, x, y1, x1, func) {
+	var y2 = 0, x2 = 0;
+
+	y2 = y - y1;
+	x2 = x - x1;
+	if (coordValid(y2, x2)) {
+		func(y2, x2);
+	}
+
+	y2 = y + y1;
+	x2 = x - x1;
+	if (coordValid(y2, x2)) {
+		func(y2, x2);
+	}
+
+	y2 = y - y1;
+	x2 = x + x1;
+	if (coordValid(y2, x2)) {
+		func(y2, x2);
+	}
+
+	y2 = y + y1;
+	x2 = x + x1;
+	if (coordValid(y2, x2)) {
+		func(y2, x2);
+	}
+}
+
+function funcCallFourDir(y, x, func, status, distance) { // if sttus === true, then it'll also do function on y,x (original coordinate)
 	var coord = [0, 0];
 
 	for (var i = 0; i < 4; i++) {
-		coord = this.calculateFromI(y, x, i);
+		coord = this.calculateFromI(y, x, i, distance);
 
 		if ( coordValid(coord[0], coord[1]) ) {
 			func(coord[0], coord[1], i);
@@ -108,33 +105,6 @@ function getMapValue(y, x) {
 
 	} else {
 		throw("Invalid coordinates for getMapValue: " + y + " " + x);
-	}
-}
-
-function setMapValue(y, x, value) {
-	if ( coordValid(y, x) ) {
-		var oldValue = getMapValue(y, x);
-
-		var cell = document.getElementById(y + "_" + x);
-
-		var difference = value - oldValue;
-
-		if (value < 0) {
-			world.map[y][x] = " ";
-
-			var ele = document.getElementById(y + "_" + x);
-			ele.className = "";	
-			ele.innerHTML = "";
-			ele = null;
-
-			controller.calculator(y, x);
-
-		} else if (value !== oldValue) {
-			cell.innerHTML = value;
-		}
-
-	} else {
-		throw("Invalid coordinates for setMapValue: " + y + " " + x);
 	}
 }
 
